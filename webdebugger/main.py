@@ -1,8 +1,11 @@
+import os
 import argparse
 from pprint import pformat
 
 import bottle
 from bottle import Bottle, run, request, template, route, view
+
+bottle.TEMPLATE_PATH.insert(0, "%s/views" % (os.path.dirname(__file__)) )
 
 @route('/hello')
 def hello():
@@ -24,7 +27,7 @@ def main():
     parser.add_argument("--port", "-p", type=int, default=8080, help="listen port")
     args = parser.parse_args()
 
-    run(app, host=args.host, port=args.port, debug=True, reloader=True)
+    run(host=args.host, port=args.port, debug=True, reloader=True)
 
 
 if __name__ == '__main__':

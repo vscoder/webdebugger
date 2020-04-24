@@ -1,17 +1,19 @@
 [tool.poetry]
 name = "webdebugger"
-version = "0.1.0"
+version = "0.2.0"
 description = "Display HTTP headers and other usable info"
 authors = ["Aleksey Koloskov <vsyscoder@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
 gunicorn = "^20.0.4"
+bottle = "^0.12.18"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
 pylint = "^2.4.4"
+coverage = "^5.1"
 
 [build-system]
-requires = ["poetry>=0.12"]
+requires = ["poetry>=1.0.0"]
 build-backend = "poetry.masonry.api"

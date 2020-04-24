@@ -113,3 +113,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# IDE
+.vscode
+
+# Deprecated
+/deprecated
