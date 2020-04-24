@@ -15,10 +15,10 @@ def hello():
 @route('/<path:path>')
 @view('info')
 def path(path="/"):
-    headers = dict(request.headers)
-    environ = dict(request.environ)
+    bottle_env = dict(request.environ)
+    os_env = dict(os.environ)
     #import ipdb; ipdb.set_trace()
-    return dict(path=path, headers=headers, environ=environ)
+    return dict(path=path, os_env=os_env, bottle_env=bottle_env)
 
 
 def main():
