@@ -36,7 +36,7 @@ or
 poetry run pytest -v
 ```
 
-## Docker
+## Run in docker container
 
 Build image
 ```shell
