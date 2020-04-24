@@ -9,8 +9,8 @@ ENV YOUR_ENV=${YOUR_ENV} \
     PIP_NO_CACHE_DIR=off \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100 \
-    POETRY_VERSION=1.0.3 \
-    PORT=8080
+    POETRY_VERSION=1.0.3
+
 
 WORKDIR /app
 COPY poetry.lock pyproject.toml /app/
@@ -24,5 +24,8 @@ RUN apk add --no-cache --virtual .build-deps gcc==9.2.0-r4 libffi-dev==3.2.1-r6 
 
 COPY . /app
 
-#CMD ["gunicorn", "-w", "1", "--bind", "0.0.0.0:${PORT}", "webdebugger.main:app"]
-CMD gunicorn -w 2 --bind 0.0.0.0:${PORT} webdebugger.main:app
+ENV APP_DELAY=0 \
+    APP_PORT=8080
+
+#CMD ["gunicorn", "-w", "1", "--bind", "0.0.0.0:${APP_PORT}", "webdebugger.main:app"]
+CMD gunicorn -w 2 --bind 0.0.0.0:${APP_PORT} webdebugger.main:app

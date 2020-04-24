@@ -38,6 +38,13 @@ poetry run pytest -v
 
 ## Run in docker container
 
+### Variables (`make` args)
+
+- `APP_PORT` app listen port and container port to expose
+- `APP_DELAY` delay, in seconds, before render web page
+
+### Commands (`make` targets)
+
 Build image
 ```shell
 make build

@@ -1,5 +1,6 @@
 import os
 import argparse
+from time import sleep
 from pprint import pformat
 
 import bottle
@@ -15,9 +16,18 @@ def hello():
 @route('/<path:path>')
 @view('info')
 def path(path="/"):
+    """
+    Render main template with lot of request and os information
+    """
+    # Sleep if defined
+    timeout = os.getenv('APP_DELAY')
+    if timeout:
+        sleep(int(timeout))
+    
+    # Collect info
     bottle_env = dict(request.environ)
     os_env = dict(os.environ)
-    #import ipdb; ipdb.set_trace()
+    
     return dict(path=path, os_env=os_env, bottle_env=bottle_env)
 
 

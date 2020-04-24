@@ -1,7 +1,8 @@
 DOCKER_IMAGE_NAME?=webdebugger
 DOCKER_IMAGE_TAG?=local
 
-PORT?=8000
+APP_PORT?=8000
+APP_DELAY?=0
 
 INTERACTIVE:=$(shell [ -t 0 ] && echo 1)
 PYTHON_37_IMAGE?=python:3.7-slim
@@ -33,9 +34,9 @@ docker-pytest: build
 	docker run $(DOCKER_FLAGS) $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) poetry run pytest -v
 
 .PHONY: docker-run
-docker-run:
-	docker run -p $(PORT):$(PORT) --env PORT=$(PORT) $(DOCKER_FLAGS) $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)
+docker-run: build
+	docker run -p $(APP_PORT):$(APP_PORT) --env APP_PORT=$(APP_PORT) --env APP_DELAY=$(APP_DELAY) $(DOCKER_FLAGS) $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)
 
 .PHONY: docker-shell
-docker-shell:
-	docker run -p $(PORT):$(PORT) --env PORT=$(PORT) $(DOCKER_FLAGS) $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) sh
+docker-shell: build
+	docker run -p $(APP_PORT):$(APP_PORT) --env APP_PORT=$(APP_PORT) --env APP_DELAY=$(APP_DELAY) $(DOCKER_FLAGS) $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) sh
