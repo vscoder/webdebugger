@@ -4,6 +4,7 @@
 - Add `autopep8` to dev dependencies
 - Add Makefile target `hadolint`
 - Add Makefile target `pycodestyle`
+- Improve code style via autopep8
 
 ## 2020-04-26
 
