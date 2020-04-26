@@ -1,3 +1,8 @@
+## 2020-04-27
+
+- Add `bump2version` to dev dependencies
+- Add `autopep8` to dev dependencies
+
 ## 2020-04-26
 
 - Add `docker-compose.yml`
