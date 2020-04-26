@@ -25,6 +25,14 @@ requirements:
 pytest:
 	poetry run pytest -v
 
+.PHONY: hadolint
+hadolint:
+	docker run --rm hadolint/hadolint:latest-alpine < ./Dockerfile
+
+.PHONY: pycodesyle
+pycodesyle:
+	poetry run pycodestyle webdebugger/
+
 .PHONY: build
 build:
 	docker build --cache-from $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) -t $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) .

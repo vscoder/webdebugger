@@ -2,6 +2,8 @@
 
 - Add `bump2version` to dev dependencies
 - Add `autopep8` to dev dependencies
+- Add Makefile target `hadolint`
+- Add Makefile target `pycodestyle`
 
 ## 2020-04-26
 

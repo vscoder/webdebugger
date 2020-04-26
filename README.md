@@ -28,12 +28,30 @@ poetry install --local
 
 ### Run tests
 
+#### pycodestyle
+
+```shell
+make pycodestyle
+```
+or
+```shell
+poetry run pycodestyle webdebugger/
+```
+
+#### pytest
+
 ```shell
 make pytest
 ```
 or
 ```shell
 poetry run pytest -v
+```
+
+#### hadolint (lint Dockerfile)
+
+```shell
+make hadolint
 ```
 
 ## Run in docker container
