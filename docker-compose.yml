@@ -1,0 +1,9 @@
+version: "2"
+services:
+  webdebugger:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      APP_PORT: 8000
+      APP_DELAY: 0

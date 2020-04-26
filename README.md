@@ -38,6 +38,12 @@ poetry run pytest -v
 
 ## Run in docker container
 
+### Run with docker-compose
+
+- `docker-compose up`
+
+App will be available on you'r IP port `80`
+
 ### Variables (`make` args)
 
 - `APP_PORT` app listen port and container port to expose
