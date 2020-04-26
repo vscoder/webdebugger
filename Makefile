@@ -13,6 +13,9 @@ ifeq ($(INTERACTIVE), 1)
 DOCKER_FLAGS:=-it
 endif
 
+#
+# Requirements
+#
 .PHONY: install_poetry
 install_poetry:
 	curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
@@ -21,18 +24,43 @@ install_poetry:
 requirements:
 	poetry install --local
 
-.PHONY: pytest
-pytest:
-	poetry run pytest -v
-
-.PHONY: hadolint
-hadolint:
-	docker run --rm hadolint/hadolint:latest-alpine < ./Dockerfile
-
+#
+# Tests
+#
 .PHONY: pycodesyle
 pycodesyle:
 	poetry run pycodestyle webdebugger/
 
+.PHONY: pytest
+pytest:
+	poetry run pytest -v
+	
+.PHONY: hadolint
+hadolint:
+	docker run --rm hadolint/hadolint:latest-alpine < ./Dockerfile
+
+#
+# Versions
+#
+.PHONY: version
+version:
+	poetry version
+
+.PHONY: version-patch
+version-patch:
+	poetry run bump2version patch
+	
+.PHONY: version-minor
+version-minor:
+	poetry run bump2version minor
+
+.PHONY: version-major
+version-major:
+	poetry run bump2version major
+
+#
+# Docker
+#
 .PHONY: build
 build:
 	docker build --cache-from $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) -t $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) .

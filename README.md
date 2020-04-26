@@ -54,6 +54,18 @@ poetry run pytest -v
 make hadolint
 ```
 
+## Version control
+
+This project use sematic versioning. See [semver](https://semver.org/)
+
+For increasee version, use corresponding Makefile targets
+- `version` - get version
+- `version-patch` - increase version patch number
+- `version-minor` - increase minor version
+- `version-major` - increase major version
+
+**NOTE:** All chacges must be committed. All these actions, except `version`, create new commit and add tag with version number.
+
 ## Run in docker container
 
 ### Run with docker-compose

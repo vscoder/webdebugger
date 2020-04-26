@@ -7,6 +7,11 @@
 - Improve code style via autopep8
 - Add Makefile target `docker-pycodestyle`
 - Add Makefile target `docker-version`
+- Add Makefile targets for version manipulation
+  - `version` - get version
+  - `version-patch` - increase version patch number
+  - `version-minor` - increase minor version
+  - `version-major` - increase major version
 
 ## 2020-04-26
 
