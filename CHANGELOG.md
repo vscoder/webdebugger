@@ -5,6 +5,8 @@
 - Add Makefile target `hadolint`
 - Add Makefile target `pycodestyle`
 - Improve code style via autopep8
+- Add Makefile target `docker-pycodestyle`
+- Add Makefile target `docker-version`
 
 ## 2020-04-26
 
