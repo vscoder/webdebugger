@@ -12,7 +12,6 @@ before_install:
   - make --version
   - docker info
 script:
-  - echo DOCKER_USERNAME=$DOCKER_USERNAME
   - make hadolint
   - make build
   #- make docker-pycodestyle
@@ -20,6 +19,6 @@ script:
   - make docker-version
 deploy:
   provider: script
-  script: bash docker-publish.sh $DOCKER_USERNAME $DOCKER_PASSWORD
+  script: make docker-publish DOCKER_USERNAME=$DOCKER_USERNAME DOCKER_PASSWORD=$DOCKER_PASSWORD
   on:
     tags: true

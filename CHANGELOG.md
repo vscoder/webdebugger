@@ -22,6 +22,7 @@
   - `DOCKER_USERNAME`
   - `DOCKER_PASSWORD`
 - Supress debug output in `docker-publish.sh`
+- Add Makefile target `docker-publish` to publish docker image via CI
 
 ## 2020-04-26
 

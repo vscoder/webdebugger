@@ -1,5 +1,7 @@
 DOCKER_IMAGE_NAME?=webdebugger
 DOCKER_IMAGE_TAG?=local
+DOCKER_USERNAME?=
+DOCKER_PASSWORD?=
 
 APP_PORT?=8000
 APP_DELAY?=0
@@ -87,3 +89,7 @@ docker-shell: build
 .PHONY: docker-version
 docker-version: build
 	docker run -p $(APP_PORT):$(APP_PORT) --env APP_PORT=$(APP_PORT) --env APP_DELAY=$(APP_DELAY) $(DOCKER_FLAGS) $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) poetry version
+
+.PHONY: docker-publish
+docker-publish: build
+	./docker-publish.sh
