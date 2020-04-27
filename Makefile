@@ -49,14 +49,17 @@ version:
 .PHONY: version-patch
 version-patch:
 	poetry run bump2version patch
+	$(MAKE) version
 	
 .PHONY: version-minor
 version-minor:
 	poetry run bump2version minor
+	$(MAKE) version
 
 .PHONY: version-major
 version-major:
 	poetry run bump2version major
+	$(MAKE) version
 
 #
 # Docker

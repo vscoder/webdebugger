@@ -13,6 +13,7 @@
   - `version-minor` - increase minor version
   - `version-major` - increase major version
 - Add `.travis.yml`
+- Display version after increase in Makefile targets `version-*`
 
 ## 2020-04-26
 
