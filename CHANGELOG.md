@@ -16,6 +16,7 @@
 - Display version after increase in Makefile targets `version-*`
 - Rename script `docker-push.sh` to `docker-publish.sh`
 - Don't publish docker image on `maste` branch update
+- Add build status badge to `README.md`
 
 ## 2020-04-26
 

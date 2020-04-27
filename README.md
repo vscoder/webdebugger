@@ -1,5 +1,8 @@
 # webdebugger
 
+[![Build Status](https://travis-ci.org/vscoder/webdebugger.svg?branch=master)](https://travis-ci.org/vscoder/webdebugger)
+
+
 This webb app show HTTP headers and other useful information
 
 
