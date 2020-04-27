@@ -23,6 +23,7 @@
   - `DOCKER_PASSWORD`
 - Supress debug output in `docker-publish.sh`
 - Add Makefile target `docker-publish` to publish docker image via CI
+- Set exit with error if any variable value isn't set in `docker-entrypoint.sh`
 
 ## 2020-04-26
 
