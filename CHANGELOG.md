@@ -21,6 +21,7 @@
 - Add variables to `.travis.yml`
   - `DOCKER_USERNAME`
   - `DOCKER_PASSWORD`
+- Supress debug output in `docker-publish.sh`
 
 ## 2020-04-26
 
