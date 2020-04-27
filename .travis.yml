@@ -19,6 +19,6 @@ script:
   - make docker-version
 deploy:
   provider: script
-  script: bash docker-publish.sh
+  script: docker-publish.sh
   on:
     tags: true
