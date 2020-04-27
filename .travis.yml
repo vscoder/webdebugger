@@ -20,6 +20,6 @@ script:
   - make docker-version
 deploy:
   provider: script
-  script: bash docker-publish.sh
+  script: bash docker-publish.sh $DOCKER_USERNAME $DOCKER_PASSWORD
   on:
     tags: true
