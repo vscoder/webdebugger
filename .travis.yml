@@ -19,6 +19,6 @@ script:
   - make docker-version
 deploy:
   provider: script
-  script: env DOCKER_USERNAME=$DOCKER_USERNAME DOCKER_PASSWORD=$DOCKER_PASSWORD bash docker-publish.sh
+  script: bash docker-publish.sh
   on:
     tags: true
