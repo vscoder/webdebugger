@@ -17,6 +17,7 @@
 - Rename script `docker-push.sh` to `docker-publish.sh`
 - Don't publish docker image on `maste` branch update
 - Add build status badge to `README.md`
+- Add `LICENSE.txt`
 
 ## 2020-04-26
 
