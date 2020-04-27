@@ -1,0 +1,25 @@
+dist: bionic
+sudo: required
+language: python
+services:
+  - docker
+env:
+  - DOCKER_IMAGE_NAME=vscoder/webdebugger
+    DOCKER_IMAGE_TAG=${TRAVIS_COMMIT}
+before_install:
+  - python --version
+  - pip --version
+  - make --version
+  - docker info
+script:
+  - make hadolint
+  - make build
+  #- make docker-pycodestyle
+  - make docker-pytest
+  - make docker-version
+deploy:
+  provider: script
+  script: bash docker-push.sh
+  on:
+    tags: true
+    branch: master

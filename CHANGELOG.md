@@ -12,6 +12,7 @@
   - `version-patch` - increase version patch number
   - `version-minor` - increase minor version
   - `version-major` - increase major version
+- Add `.travis.yml`
 
 ## 2020-04-26
 
