@@ -22,4 +22,3 @@ deploy:
   script: bash docker-publish.sh
   on:
     tags: true
-    branch: master

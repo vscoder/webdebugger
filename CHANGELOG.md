@@ -15,6 +15,7 @@
 - Add `.travis.yml`
 - Display version after increase in Makefile targets `version-*`
 - Rename script `docker-push.sh` to `docker-publish.sh`
+- Don't publish docker image on `maste` branch update
 
 ## 2020-04-26
 
