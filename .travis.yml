@@ -6,6 +6,7 @@ services:
 env:
   - DOCKER_IMAGE_NAME=vscoder/webdebugger
     DOCKER_IMAGE_TAG=${TRAVIS_COMMIT}
+    DOCKER_USER=${DOCKER_USER}
 before_install:
   - python --version
   - pip --version
@@ -19,6 +20,6 @@ script:
   - make docker-version
 deploy:
   provider: script
-  script: docker-publish.sh
+  script: bash docker-publish.sh
   on:
     tags: true
