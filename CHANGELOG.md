@@ -14,6 +14,7 @@
   - `version-major` - increase major version
 - Add `.travis.yml`
 - Display version after increase in Makefile targets `version-*`
+- Rename script `docker-push.sh` to `docker-publish.sh`
 
 ## 2020-04-26
 

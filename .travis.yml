@@ -19,7 +19,7 @@ script:
   - make docker-version
 deploy:
   provider: script
-  script: bash docker-push.sh
+  script: bash docker-publish.sh
   on:
     tags: true
     branch: master
