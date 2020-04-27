@@ -18,6 +18,9 @@
 - Don't publish docker image on `maste` branch update
 - Add build status badge to `README.md`
 - Add `LICENSE.txt`
+- Add variables to `.travis.yml`
+  - `DOCKER_USERNAME`
+  - `DOCKER_PASSWORD`
 
 ## 2020-04-26
 

@@ -7,6 +7,7 @@ env:
   - DOCKER_IMAGE_NAME=vscoder/webdebugger
     DOCKER_IMAGE_TAG=${TRAVIS_COMMIT}
     DOCKER_USERNAME=${DOCKER_USERNAME}
+    DOCKER_PASSWORD=${DOCKER_PASSWORD}
 before_install:
   - python --version
   - pip --version
