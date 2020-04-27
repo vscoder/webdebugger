@@ -27,5 +27,7 @@ COPY . /app
 ENV APP_DELAY=0 \
     APP_PORT=8080
 
+EXPOSE ${APP_PORT}
+
 #CMD ["gunicorn", "-w", "1", "--bind", "0.0.0.0:${APP_PORT}", "webdebugger.main:app"]
 CMD gunicorn -w 2 --bind 0.0.0.0:${APP_PORT} webdebugger.main:app

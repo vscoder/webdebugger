@@ -25,6 +25,7 @@
 - Add Makefile target `docker-publish` to publish docker image via CI
 - Set exit with error if any variable value isn't set in `docker-entrypoint.sh`
 - Dont do `build` before any of `docker-*` Makefile target
+- Add `EXPOSE ${APP_PORT}` instruction to Dockerfile
 
 ## 2020-04-26
 
