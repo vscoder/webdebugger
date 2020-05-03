@@ -2,6 +2,8 @@ version: "2"
 services:
   webdebugger:
     build: .
+    volumes:
+      - "./:/app"
     ports:
       - "8000:8000"
     environment:

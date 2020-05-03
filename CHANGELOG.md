@@ -1,3 +1,10 @@
+## 2020-05-03
+
+- Add route `/env/<env_var>`. Return os environmant variable `env_var` value
+- Add route `/healthz`. Always return OK
+- Upldate `docker-compose.yml`. Mount `./` as `/app` into container
+- Add pycodestyle to `.travis.yml` pipeline
+
 ## 2020-04-27
 
 - Add `bump2version` to dev dependencies

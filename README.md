@@ -2,9 +2,34 @@
 
 [![Build Status](https://travis-ci.org/vscoder/webdebugger.svg?branch=master)](https://travis-ci.org/vscoder/webdebugger)
 
-
 This webb app show HTTP headers and other useful information
 
+## How to run
+
+### Docker
+
+Just run docker container from Docker Hub
+
+```shell
+docker run -p 8080:8080 vscoder/webdebugger:latest
+```
+And now open webdebugger at http://localhost:8080/
+
+## Configuration
+
+### Environment variables
+
+- `APP_PORT` app listen port and container port to expose
+- `APP_DELAY` reply delay, seconds
+
+### Routes
+
+Webdebugger process these URI paths
+
+- `/hello` - always return `Hello World! ^_^`
+- `/healthz` - always return `OK`
+- `/env/<env_var>` - return value of uppercased os environment variable `env_var`
+- `/` and `/<path:path>` - are all other URI paths. Return request and os environment variables.
 
 ## Development
 
@@ -75,12 +100,11 @@ For increasee version, use corresponding Makefile targets
 
 - `docker-compose up`
 
-App will be available on you'r IP port `80`
+App will be available on you'r IP port `8000`
 
 ### Variables (`make` args)
 
-- `APP_PORT` app listen port and container port to expose
-- `APP_DELAY` delay, in seconds, before render web page
+Make args are the same as environment variables
 
 ### Commands (`make` targets)
 

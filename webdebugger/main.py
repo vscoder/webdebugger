@@ -11,7 +11,21 @@ bottle.TEMPLATE_PATH.insert(0, "%s/views" % (os.path.dirname(__file__)))
 
 @route('/hello')
 def hello():
-    return "Hello World!"
+    return "Hello World! ^_^"
+
+
+@route('/healthz')
+def healthz():
+    return "OK"
+
+
+@route('/env/<env_var>')
+def env_var(env_var):
+    """
+    Return the value of <env_var> os environment variable
+    """
+    var_value = os.environ.get(env_var.upper())
+    return var_value
 
 
 @route('/')
