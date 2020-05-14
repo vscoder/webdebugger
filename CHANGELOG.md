@@ -1,3 +1,7 @@
+## 2020-05-15
+
+- Include bootstrap-4.5.0 into html template
+
 ## 2020-05-03
 
 - Add route `/env/<env_var>`. Return os environmant variable `env_var` value
