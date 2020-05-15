@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "webdebugger"
-version = "0.7.0"
+version = "0.8.0"
 description = "Display HTTP headers and other usable info"
 authors = ["Aleksey Koloskov <vsyscoder@gmail.com>"]
 
