@@ -1,3 +1,9 @@
+## 2020-05-16
+
+- Display webdebugger version in webpage title
+  - Add `APP_VERSION` to `Dockerfile`
+  - Automatically update `APP_VERSION` in `Dockerfile` by _bump2version_
+
 ## 2020-05-15
 
 - Include bootstrap-4.5.0 into html template

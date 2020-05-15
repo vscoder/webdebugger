@@ -24,7 +24,8 @@ RUN apk add --no-cache --virtual .build-deps gcc==9.2.0-r4 libffi-dev==3.2.1-r6 
 
 COPY . /app
 
-ENV APP_DELAY=0 \
+ENV APP_VERSION=0.7.0 \
+    APP_DELAY=0 \
     APP_PORT=8080
 
 EXPOSE ${APP_PORT}
