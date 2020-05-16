@@ -1,3 +1,7 @@
+## 2020-05-17
+
+- Remove `-${TRAVIS_BUILD_NUMBER}` from docker image tag
+
 ## 2020-05-16
 
 - Display webdebugger version in webpage title
