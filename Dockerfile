@@ -1,4 +1,4 @@
-FROM python:3.7.6-alpine3.11
+FROM python:3.7-alpine3.12
 
 ARG YOUR_ENV
 
@@ -16,7 +16,11 @@ WORKDIR /app
 COPY poetry.lock pyproject.toml /app/
 
 # Deps and requirements:
-RUN apk add --no-cache --virtual .build-deps gcc==9.2.0-r4 libffi-dev==3.2.1-r6 musl-dev==1.1.24-r2 openssl-dev==1.1.1g-r0 \
+RUN apk add --no-cache --virtual .build-deps \
+    gcc==9.3.0-r2 \
+    libffi-dev==3.3-r2 \
+    musl-dev==1.1.24-r9 \
+    openssl-dev==1.1.1g-r0 \
     && pip install "poetry==$POETRY_VERSION" \
     && poetry config virtualenvs.create false \
     && poetry install $(test "$YOUR_ENV" == production && echo "--no-dev") --no-interaction --no-ansi \
@@ -26,9 +30,9 @@ COPY . /app
 
 ENV APP_VERSION=0.8.1 \
     APP_DELAY=0 \
-    APP_PORT=8080
+    APP_BGCOLOR=white
 
-EXPOSE ${APP_PORT}
+EXPOSE 8080
 
-#CMD ["gunicorn", "-w", "1", "--bind", "0.0.0.0:${APP_PORT}", "webdebugger.main:app"]
-CMD gunicorn -w 2 --bind 0.0.0.0:${APP_PORT} webdebugger.main:app
+CMD [ "gunicorn", "-w", "2", "--bind", "0.0.0.0:8080", "webdebugger.main:app" ]
+#CMD gunicorn -w 2 --bind 0.0.0.0:8080 webdebugger.main:app

@@ -3,8 +3,9 @@ DOCKER_IMAGE_TAG?=local
 DOCKER_USERNAME?=
 DOCKER_PASSWORD?=
 
-APP_PORT?=8000
+HOST_PORT?=8000
 APP_DELAY?=0
+APP_BGCOLOR?=white
 
 INTERACTIVE:=$(shell [ -t 0 ] && echo 1)
 PYTHON_37_IMAGE?=python:3.7-slim
@@ -39,7 +40,7 @@ pytest:
 	
 .PHONY: hadolint
 hadolint:
-	docker run --rm hadolint/hadolint:latest-alpine < ./Dockerfile
+	docker run --rm -i hadolint/hadolint:latest-alpine hadolint --ignore SC2046 - < ./Dockerfile
 
 #
 # Versions
@@ -80,15 +81,15 @@ docker-pytest:
 
 .PHONY: docker-run
 docker-run:
-	docker run -p $(APP_PORT):$(APP_PORT) --env APP_PORT=$(APP_PORT) --env APP_DELAY=$(APP_DELAY) $(DOCKER_FLAGS) $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)
+	docker run -p $(HOST_PORT):8080 --env APP_DELAY=$(APP_DELAY) --env APP_BGCOLOR=$(APP_BGCOLOR) $(DOCKER_FLAGS) $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)
 
 .PHONY: docker-shell
 docker-shell:
-	docker run -p $(APP_PORT):$(APP_PORT) --env APP_PORT=$(APP_PORT) --env APP_DELAY=$(APP_DELAY) $(DOCKER_FLAGS) $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) sh
+	docker run -p $(HOST_PORT):8080 --env APP_DELAY=$(APP_DELAY) --env APP_BGCOLOR=$(APP_BGCOLOR) $(DOCKER_FLAGS) $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) sh
 
 .PHONY: docker-version
 docker-version:
-	docker run -p $(APP_PORT):$(APP_PORT) --env APP_PORT=$(APP_PORT) --env APP_DELAY=$(APP_DELAY) $(DOCKER_FLAGS) $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) poetry version
+	docker run -p $(HOST_PORT):8080 --env APP_DELAY=$(APP_DELAY) --env APP_BGCOLOR=$(APP_BGCOLOR) $(DOCKER_FLAGS) $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) poetry version
 
 .PHONY: docker-publish
 docker-publish:

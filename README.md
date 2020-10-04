@@ -19,8 +19,8 @@ And now open webdebugger at http://localhost:8080/
 
 ### Environment variables
 
-- `APP_PORT` app listen port and container port to expose
 - `APP_DELAY` reply delay, seconds
+- `APP_BGCOLOR` set web-page background color. Default `white`
 
 ### Routes
 

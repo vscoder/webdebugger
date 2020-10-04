@@ -1,3 +1,10 @@
+## 2020-10-04
+
+- Add possibility setting web-page background color with env variable `APP_BGCOLOR`
+- Fix Makefile target `hadolint`. Now it works
+- Omit variable `APP_PORT` as unusable
+- 
+
 ## 2020-05-17
 
 - Remove `-${TRAVIS_BUILD_NUMBER}` from docker image tag
