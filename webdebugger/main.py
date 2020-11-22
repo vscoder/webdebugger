@@ -72,10 +72,11 @@ if __name__ == '__main__':
 
 # Sentry integration args
 sentry_dsn = os.getenv('SENTRY_DSN')
-release = os.getenv
+release = os.getenv('APP_VERSION')
 if sentry_dsn:
     sentry_sdk.init(
         dsn=sentry_dsn,
+        release=f"webdebugger@{release}",
         integrations=[BottleIntegration()]
     )
 

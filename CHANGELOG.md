@@ -2,6 +2,7 @@
 
 - Fix docker build (upd mysl-dev vesrsion to `1.1.24-r10`)
 - Add sentry integration (use env `SENTRY_DSN`)
+- Pass app version as release info to sentry
 
 ## 2020-10-04
 
