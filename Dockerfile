@@ -28,7 +28,7 @@ RUN apk add --no-cache --virtual .build-deps \
 
 COPY . /app
 
-ENV APP_VERSION=0.10.0 \
+ENV APP_VERSION=0.10.1 \
     APP_DELAY=0 \
     APP_BGCOLOR=white \
     SENTRY_DSN=""
