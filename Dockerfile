@@ -19,7 +19,7 @@ COPY poetry.lock pyproject.toml /app/
 RUN apk add --no-cache --virtual .build-deps \
     gcc==9.3.0-r2 \
     libffi-dev==3.3-r2 \
-    musl-dev==1.1.24-r9 \
+    musl-dev==1.1.24-r10 \
     openssl-dev==1.1.1g-r0 \
     && pip install "poetry==$POETRY_VERSION" \
     && poetry config virtualenvs.create false \
@@ -30,7 +30,8 @@ COPY . /app
 
 ENV APP_VERSION=0.9.0 \
     APP_DELAY=0 \
-    APP_BGCOLOR=white
+    APP_BGCOLOR=white \
+    SENTRY_DSN=""
 
 EXPOSE 8080
 

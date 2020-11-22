@@ -6,6 +6,9 @@ from pprint import pformat
 import bottle
 from bottle import Bottle, run, request, template, route, view
 
+import sentry_sdk
+from sentry_sdk.integrations.bottle import BottleIntegration
+
 bottle.TEMPLATE_PATH.insert(0, "%s/views" % (os.path.dirname(__file__)))
 
 
@@ -17,6 +20,11 @@ def hello():
 @route('/healthz')
 def healthz():
     return "OK"
+
+
+@route('/exception')
+def exception():
+    raise Exception("test exception generated")
 
 
 @route('/env/<env_var>')
@@ -60,5 +68,15 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# Sentry integration args
+sentry_dsn = os.getenv('SENTRY_DSN')
+release = os.getenv
+if sentry_dsn:
+    sentry_sdk.init(
+        dsn=sentry_dsn,
+        integrations=[BottleIntegration()]
+    )
 
 app = bottle.default_app()

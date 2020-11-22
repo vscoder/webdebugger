@@ -21,6 +21,7 @@ And now open webdebugger at http://localhost:8080/
 
 - `APP_DELAY` reply delay, seconds
 - `APP_BGCOLOR` set web-page background color. Default `white`
+- `SENTRY_DSN` sentry DSN to send traces. Default empty
 
 ### Routes
 

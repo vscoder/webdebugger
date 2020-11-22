@@ -1,3 +1,8 @@
+## 2020-11-22
+
+- Fix docker build (upd mysl-dev vesrsion to `1.1.24-r10`)
+- Add sentry integration (use env `SENTRY_DSN`)
+
 ## 2020-10-04
 
 - Add possibility setting web-page background color with env variable `APP_BGCOLOR`
