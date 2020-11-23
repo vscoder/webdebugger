@@ -21,7 +21,7 @@ RUN apk add --no-cache --virtual .build-deps \
     libffi-dev==3.3-r2 \
     musl-dev==1.1.24-r10 \
     openssl-dev==1.1.1g-r0 \
-    && pip install "poetry==$POETRY_VERSION" \
+    && pip install --no-cache-dir "poetry==$POETRY_VERSION" \
     && poetry config virtualenvs.create false \
     && poetry install $(test "$YOUR_ENV" == production && echo "--no-dev") --no-interaction --no-ansi \
     && apk del .build-deps
