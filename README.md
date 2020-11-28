@@ -21,7 +21,7 @@ And now open webdebugger at http://localhost:8080/
 
 - `APP_DELAY` reply delay, seconds
 - `APP_BGCOLOR` set web-page background color. Default `white`
-- `APP_NO_CSS` disable loading external CSS or JS resources (usebla inside of isolated environments)
+- `APP_NO_CSS` disable loading external CSS or JS resources (usebla inside of isolated environments). Available values: one of `'true', 'yes', '1'` is `True`, every other value is `False`.
 - `SENTRY_DSN` sentry DSN to send traces. Default empty
 
 ### Routes
