@@ -4,7 +4,7 @@ from time import sleep
 from pprint import pformat
 
 import bottle
-from bottle import Bottle, run, request, template, route, view
+from bottle import Bottle, run, request, jinja2_view, route
 
 import sentry_sdk
 from sentry_sdk.integrations.bottle import BottleIntegration
@@ -38,7 +38,7 @@ def env_var(env_var):
 
 @route('/')
 @route('/<path:path>')
-@view('info')
+@jinja2_view('info')
 def path(path="/"):
     """
     Render main template with lot of request and os information

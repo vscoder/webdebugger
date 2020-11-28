@@ -6,7 +6,13 @@ DOCKER_PASSWORD?=
 HOST_PORT?=8000
 APP_DELAY?=0
 APP_BGCOLOR?=white
+APP_NO_CSS=false
+
+# Sentry
 SENTRY_DSN=""
+SENTRY_ORG=sentry
+SENTRY_PROJECT=webdebugger
+SENTRY_AUTH_TOKEN="1ea340b1084a4df4905f76ef97387070ec3fac6f08644fd7aabd6f74b48207ce"
 
 INTERACTIVE:=$(shell [ -t 0 ] && echo 1)
 PYTHON_37_IMAGE?=python:3.7-slim
@@ -82,15 +88,15 @@ docker-pytest:
 
 .PHONY: docker-run
 docker-run:
-	docker run -p $(HOST_PORT):8080 --env APP_DELAY=$(APP_DELAY) --env APP_BGCOLOR=$(APP_BGCOLOR) --env SENTRY_DSN=$(SENTRY_DSN) $(DOCKER_FLAGS) $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)
+	docker run -p $(HOST_PORT):8080 --env APP_DELAY=$(APP_DELAY) --env APP_BGCOLOR=$(APP_BGCOLOR) --env APP_NO_CSS=$(APP_NO_CSS) --env SENTRY_DSN=$(SENTRY_DSN) $(DOCKER_FLAGS) $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG)
 
 .PHONY: docker-shell
 docker-shell:
-	docker run -p $(HOST_PORT):8080 --env APP_DELAY=$(APP_DELAY) --env APP_BGCOLOR=$(APP_BGCOLOR) $(DOCKER_FLAGS) $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) sh
+	docker run -p $(HOST_PORT):8080 --env APP_DELAY=$(APP_DELAY) --env APP_BGCOLOR=$(APP_BGCOLOR) --env APP_NO_CSS=$(APP_NO_CSS) $(DOCKER_FLAGS) $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) sh
 
 .PHONY: docker-version
 docker-version:
-	docker run -p $(HOST_PORT):8080 --env APP_DELAY=$(APP_DELAY) --env APP_BGCOLOR=$(APP_BGCOLOR) $(DOCKER_FLAGS) $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) poetry version
+	docker run -p $(HOST_PORT):8080 --env APP_DELAY=$(APP_DELAY) --env APP_BGCOLOR=$(APP_BGCOLOR) --env APP_NO_CSS=$(APP_NO_CSS) $(DOCKER_FLAGS) $(DOCKER_IMAGE_NAME):$(DOCKER_IMAGE_TAG) poetry version
 
 .PHONY: docker-publish
 docker-publish:

@@ -1,3 +1,8 @@
+## 2020-11-29
+
+- Add boolean variable `APP_NO_CSS` variable to disable loading external CSS or JS resources (usable in isolated environments)
+- Migrate to jinja2 template engine
+
 ## 2020-11-22
 
 - Fix docker build (upd mysl-dev vesrsion to `1.1.24-r10`)

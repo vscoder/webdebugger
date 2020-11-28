@@ -31,6 +31,7 @@ COPY . /app
 ENV APP_VERSION=0.10.1 \
     APP_DELAY=0 \
     APP_BGCOLOR=white \
+    APP_NO_CSS=false \
     SENTRY_DSN=""
 
 EXPOSE 8080
