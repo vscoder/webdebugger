@@ -73,6 +73,13 @@ version-major:
 	$(MAKE) version
 
 #
+# Git
+#
+.PHONY: push
+push:
+	git push && git push --tags
+
+#
 # Docker
 #
 .PHONY: build

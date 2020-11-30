@@ -1,6 +1,7 @@
 ## 2020-11-30
 
 - Add `SENTRY_URL=http://sentry.local:19000/` variable to Makefile
+- Add Makefile target `push`
 
 ## 2020-11-29
 
