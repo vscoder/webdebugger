@@ -19,10 +19,14 @@ And now open webdebugger at http://localhost:8080/
 
 ### Environment variables
 
+App behavior variables:
 - `APP_DELAY` reply delay, seconds
 - `APP_BGCOLOR` set web-page background color. Default `white`
 - `APP_NO_CSS` disable loading external CSS or JS resources (usebla inside of isolated environments). Available values: one of `'true', 'yes', '1'` is `True`, every other value is `False`.
+
+Sentry-related variables:
 - `SENTRY_DSN` sentry DSN to send traces. Default empty
+TODO:
 
 ### Routes
 
@@ -95,6 +99,10 @@ For increasee version, use corresponding Makefile targets
 - `version-major` - increase major version
 
 **NOTE:** All chacges must be committed. All these actions, except `version`, create new commit and add tag with version number.
+
+## Sentry integration
+
+TODO
 
 ## Run in docker container
 

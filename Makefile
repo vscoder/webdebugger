@@ -9,7 +9,7 @@ APP_BGCOLOR?=white
 APP_NO_CSS=false
 
 # Sentry
-SENTRY_DSN=""
+SENTRY_DSN="http://8ba829ea40a04af28f5361b836499346@192.168.128.8:19000/3"
 SENTRY_ORG=sentry
 SENTRY_URL=http://sentry.local:19000/
 SENTRY_PROJECT=webdebugger
@@ -72,12 +72,39 @@ version-major:
 	poetry run bump2version major
 	$(MAKE) version
 
+
 #
 # Git
 #
 .PHONY: push
 push:
 	git push && git push --tags
+
+
+#
+# Sentry
+#
+.PHONY: sentry-release-new
+sentry-release-new:
+	SENTRY_URL=$(SENTRY_URL) \
+	SENTRY_PROJECT=$(SENTRY_PROJECT) \
+	SENTRY_AUTH_TOKEN=$(SENTRY_AUTH_TOKEN) \
+	sentry-cli releases new -p $(SENTRY_PROJECT) $(SENTRY_PROJECT)@$(shell cat ./VERSION.txt)
+
+.PHONY: sentry-set-commits
+sentry-set-commits:
+	SENTRY_URL=$(SENTRY_URL) \
+	SENTRY_PROJECT=$(SENTRY_PROJECT) \
+	SENTRY_AUTH_TOKEN=$(SENTRY_AUTH_TOKEN) \
+	sentry-cli releases set-commits --auto $(SENTRY_PROJECT)@$(shell cat ./VERSION.txt)
+
+.PHONY: sentry-release-finalize
+sentry-release-finalize:
+	SENTRY_URL=$(SENTRY_URL) \
+	SENTRY_PROJECT=$(SENTRY_PROJECT) \
+	SENTRY_AUTH_TOKEN=$(SENTRY_AUTH_TOKEN) \
+	sentry-cli releases finalize -p $(SENTRY_PROJECT) $(SENTRY_PROJECT)@$(shell cat ./VERSION.txt)
+
 
 #
 # Docker

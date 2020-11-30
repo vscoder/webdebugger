@@ -3,6 +3,10 @@
 - Add `SENTRY_URL=http://sentry.local:19000/` variable to Makefile
 - Add Makefile target `push`
 - Add `VERSION.txt` with current version
+- Add Makefile targets to manipulate sentry releases
+  - sentry-release-new
+  - sentry-set-commits
+  - sentry-release-finalize
 
 ## 2020-11-29
 
