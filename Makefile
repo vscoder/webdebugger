@@ -11,6 +11,7 @@ APP_NO_CSS=false
 # Sentry
 SENTRY_DSN=""
 SENTRY_ORG=sentry
+SENTRY_URL=http://sentry.local:19000/
 SENTRY_PROJECT=webdebugger
 SENTRY_AUTH_TOKEN="1ea340b1084a4df4905f76ef97387070ec3fac6f08644fd7aabd6f74b48207ce"
 

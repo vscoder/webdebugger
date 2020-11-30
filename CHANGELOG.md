@@ -1,3 +1,7 @@
+## 2020-11-30
+
+- Add `SENTRY_URL=http://sentry.local:19000/` variable to Makefile
+
 ## 2020-11-29
 
 - Add boolean variable `APP_NO_CSS` variable to disable loading external CSS or JS resources (usable in isolated environments)
