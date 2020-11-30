@@ -2,6 +2,7 @@
 
 - Add `SENTRY_URL=http://sentry.local:19000/` variable to Makefile
 - Add Makefile target `push`
+- Add `VERSION.txt` with current version
 
 ## 2020-11-29
 
