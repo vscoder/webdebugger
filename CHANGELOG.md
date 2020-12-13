@@ -1,3 +1,7 @@
+## 2020-12-13
+
+- Upd sentry release version publication
+
 ## 2020-11-30
 
 - Add `SENTRY_URL=http://sentry.local:19000/` variable to Makefile

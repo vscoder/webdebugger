@@ -103,7 +103,7 @@ sentry-release-finalize:
 	SENTRY_URL=$(SENTRY_URL) \
 	SENTRY_PROJECT=$(SENTRY_PROJECT) \
 	SENTRY_AUTH_TOKEN=$(SENTRY_AUTH_TOKEN) \
-	sentry-cli releases finalize -p $(SENTRY_PROJECT) $(SENTRY_PROJECT)@$(shell cat ./VERSION.txt)
+	sentry-cli releases finalize $(SENTRY_PROJECT)@$(shell cat ./VERSION.txt)
 
 
 #
