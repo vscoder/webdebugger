@@ -1,6 +1,7 @@
 ## 2020-12-13
 
 - Upd sentry release version publication
+- Upd openssl-dev to `1.1.1i-r0`
 
 ## 2020-11-30
 
