@@ -48,7 +48,7 @@ pytest:
 	
 .PHONY: hadolint
 hadolint:
-	docker run --rm -i hadolint/hadolint:latest-alpine hadolint --ignore SC2046 - < ./Dockerfile
+	docker run --rm -i hadolint/hadolint:latest-alpine hadolint --ignore SC2046 --ignore DL3018 --ignore DL3013 - < ./Dockerfile
 
 #
 # Versions

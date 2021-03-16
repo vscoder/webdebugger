@@ -1,6 +1,7 @@
 ## 2021-03-16
 
 - Log request environ to stdout
+- Hadolint ignore non strict versions for apk and pip
 
 ## 2020-12-13
 
