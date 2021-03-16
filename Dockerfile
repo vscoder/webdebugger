@@ -22,7 +22,7 @@ RUN apk add --no-cache --virtual .build-deps \
     musl-dev \
     openssl-dev \
     rust cargo \
-    && pip install --upgrade pip \
+    && pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir "poetry==$POETRY_VERSION" \
     && poetry config virtualenvs.create false \
     && poetry install $(test "$YOUR_ENV" == production && echo "--no-dev") --no-interaction --no-ansi \
