@@ -5,7 +5,7 @@ services:
     volumes:
       - "./:/app"
     ports:
-      - "8080:8080"
+      - "8000:8080"
     environment:
       APP_DELAY: 0
       APP_BGCOLOR: white

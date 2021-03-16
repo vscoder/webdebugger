@@ -1,3 +1,7 @@
+## 2021-03-16
+
+- Log request environ to stdout
+
 ## 2020-12-13
 
 - Upd sentry release version publication

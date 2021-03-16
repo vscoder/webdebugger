@@ -9,7 +9,7 @@ ENV YOUR_ENV=${YOUR_ENV} \
     PIP_NO_CACHE_DIR=off \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100 \
-    POETRY_VERSION=1.0.3
+    POETRY_VERSION=1.1.5
 
 
 WORKDIR /app
@@ -17,10 +17,12 @@ COPY poetry.lock pyproject.toml /app/
 
 # Deps and requirements:
 RUN apk add --no-cache --virtual .build-deps \
-    gcc==9.3.0-r2 \
-    libffi-dev==3.3-r2 \
-    musl-dev==1.1.24-r10 \
-    openssl-dev==1.1.1i-r0 \
+    gcc \
+    libffi-dev \
+    musl-dev \
+    openssl-dev \
+    rust cargo \
+    && pip install --upgrade pip \
     && pip install --no-cache-dir "poetry==$POETRY_VERSION" \
     && poetry config virtualenvs.create false \
     && poetry install $(test "$YOUR_ENV" == production && echo "--no-dev") --no-interaction --no-ansi \

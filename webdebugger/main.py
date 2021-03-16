@@ -1,13 +1,17 @@
-import os
 import argparse
-from time import sleep
+import logging
+import os
 from pprint import pformat
+from time import sleep
 
 import bottle
-from bottle import Bottle, run, request, jinja2_view, route
-
 import sentry_sdk
+from bottle import Bottle, jinja2_view, request, route, run
 from sentry_sdk.integrations.bottle import BottleIntegration
+
+FORMAT = '%(message)s'
+logging.basicConfig(format=FORMAT)
+logger = logging.getLogger(__name__)
 
 bottle.TEMPLATE_PATH.insert(0, "%s/views" % (os.path.dirname(__file__)))
 
@@ -51,6 +55,10 @@ def path(path="/"):
     # Collect info
     bottle_env = dict(request.environ)
     os_env = dict(os.environ)
+
+    for var, value in bottle_env.items():
+        logger.warning(f'{var} = {value}')
+    logger.warning('-'*16)
 
     return dict(path=path, os_env=os_env, bottle_env=bottle_env)
 
