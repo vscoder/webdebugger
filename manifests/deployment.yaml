@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webdebugger
+  labels:
+    app: webdebugger
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webdebugger
+  template:
+    metadata:
+      labels:
+        app: webdebugger
+    spec:
+      containers:
+      - name: webdebugger
+        image: vscoder/webdebugger:v0.12.1
+        ports:
+        - containerPort: 8080
