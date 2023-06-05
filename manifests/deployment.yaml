@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: webdebugger
-        image: vscoder/webdebugger:v0.12.1
+        image: vscoder/webdebugger:v0.12.4
         ports:
         - containerPort: 8080
