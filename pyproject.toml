@@ -5,7 +5,7 @@ description = "Display HTTP headers and other usable info"
 authors = ["Aleksey Koloskov <vsyscoder@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.11"
 gunicorn = "^20.0.4"
 bottle = "^0.12.18"
 sentry-sdk = {extras = ["bottle"], version = "^0.19.4"}
