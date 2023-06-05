@@ -33,7 +33,7 @@ install_poetry:
 
 .PHONY: requirements
 requirements:
-	poetry install --local
+	poetry install
 
 #
 # Tests
