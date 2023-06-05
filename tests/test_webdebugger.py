@@ -2,4 +2,4 @@ from webdebugger import __version__
 
 
 def test_version():
-    assert __version__ == '0.12.4'
+    assert __version__ == '0.12.5'
