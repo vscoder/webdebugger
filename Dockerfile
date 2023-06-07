@@ -38,5 +38,5 @@ ENV APP_VERSION=0.12.5 \
 
 EXPOSE 8080
 
-CMD [ "gunicorn", "-w", "2", "--bind", "0.0.0.0:8080", "webdebugger.main:app" ]
+CMD [ "gunicorn", "-w", "2", "--bind", "0.0.0.0:8080", "webdebugger.app:app" ]
 #CMD gunicorn -w 2 --bind 0.0.0.0:8080 webdebugger.main:app

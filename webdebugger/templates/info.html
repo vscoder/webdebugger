@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    {% if os_env.get("APP_NO_CSS").lower() in ['true', 'yes', '1'] %}
+    {% if os_env.get("APP_NO_CSS", "false").lower() in ['true', 'yes', '1'] %}
     <!-- Skipped via env variable APP_NO_CSS -->
     {% else %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -22,7 +22,7 @@
   <body>
 
     <!-- Optional JavaScript -->
-    {% if os_env.get("APP_NO_CSS").lower() in ['true', 'yes', '1'] %}
+    {% if os_env.get("APP_NO_CSS", "false").lower() in ['true', 'yes', '1'] %}
     <!-- Skipped via env variable APP_NO_CSS -->
     {% else %}
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -42,7 +42,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for k, v in bottle_env.items() %}
+                {% for k, v in flask_env.items() %}
                 <tr>
                     <td>{{ k }}</td>
                     <td>{{ v }}</td>

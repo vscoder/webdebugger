@@ -1,3 +1,3 @@
-import webdebugger.main
+import webdebugger.app
 
-app = webdebugger.main.app
+app = webdebugger.app.app
