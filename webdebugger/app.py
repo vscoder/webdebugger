@@ -1,5 +1,4 @@
 import argparse
-import logging
 import os
 from pprint import pformat
 from time import sleep
@@ -8,11 +7,16 @@ import sentry_sdk
 from flask import Flask, render_template, request
 from sentry_sdk.integrations.flask import FlaskIntegration
 
+from opentelemetry.instrumentation.flask import FlaskInstrumentor
+
+from opentelemetry.sdk.trace.export import (
+    BatchSpanProcessor,
+    ConsoleSpanExporter,
+)
+
 app = Flask(__name__)
 
-FORMAT = '%(message)s'
-logging.basicConfig(format=FORMAT)
-logger = logging.getLogger(__name__)
+FlaskInstrumentor().instrument_app(app)
 
 @app.route('/hello')
 def hello():
@@ -54,8 +58,8 @@ def path(path="/"):
     os_env = dict(os.environ)
 
     for var, value in flask_env.items():
-        logger.warning(f'{var} = {value}')
-    logger.warning('-'*16)
+        app.logger.warning(f'{var} = {value}')
+    app.logger.warning('-'*16)
 
     return render_template('info.html', path=path, os_env=os_env, flask_env=flask_env)
 
@@ -68,7 +72,7 @@ def main():
                         default=8080, help="listen port")
     args = parser.parse_args()
 
-    app.run(host=args.host, port=args.port, debug=True, reloader=True)
+    app.run(host=args.host, port=args.port, debug=True, use_reloader=False)
 
 
 if __name__ == '__main__':
