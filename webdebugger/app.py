@@ -16,7 +16,7 @@ from opentelemetry.sdk.trace.export import (
 
 app = Flask(__name__)
 
-FlaskInstrumentor().instrument_app(app)
+FlaskInstrumentor(set_logging_format=True).instrument_app(app)
 
 @app.route('/hello')
 def hello():
