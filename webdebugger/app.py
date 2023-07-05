@@ -1,5 +1,6 @@
 import argparse
 import os
+import sys
 from pprint import pformat
 from time import sleep
 
@@ -24,6 +25,8 @@ FlaskInstrumentor().instrument_app(app)
 # https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/logging/logging.html
 LoggingInstrumentor().instrument(set_logging_format=True, log_level=logging.INFO)
 
+handler = logging.StreamHandler(sys.stdout)
+app.logger.addHandler(handler)
 
 @app.route('/hello')
 def hello():
