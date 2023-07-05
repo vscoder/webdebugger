@@ -63,8 +63,8 @@ def path(path="/"):
     os_env = dict(os.environ)
 
     for var, value in flask_env.items():
-        app.logger.info(f'{var} = {value}')
-    app.logger.info('-'*16)
+        app.logger.warning(f'{var} = {value}')
+    app.logger.warning('-'*16)
 
     return render_template('info.html', path=path, os_env=os_env, flask_env=flask_env)
 
