@@ -8,6 +8,7 @@ from flask import Flask, render_template, request
 from sentry_sdk.integrations.flask import FlaskIntegration
 
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
+from opentelemetry.instrumentation.logging import LoggingInstrumentor
 
 from opentelemetry.sdk.trace.export import (
     BatchSpanProcessor,
@@ -16,7 +17,9 @@ from opentelemetry.sdk.trace.export import (
 
 app = Flask(__name__)
 
-FlaskInstrumentor(set_logging_format=True).instrument_app(app)
+FlaskInstrumentor().instrument_app(app)
+LoggingInstrumentor().instrument(set_logging_format=True)
+
 
 @app.route('/hello')
 def hello():
