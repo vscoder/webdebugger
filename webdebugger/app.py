@@ -3,6 +3,8 @@ import os
 from pprint import pformat
 from time import sleep
 
+import logging
+
 import sentry_sdk
 from flask import Flask, render_template, request
 from sentry_sdk.integrations.flask import FlaskIntegration
@@ -20,7 +22,7 @@ app = Flask(__name__)
 # https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/flask/flask.html
 FlaskInstrumentor().instrument_app(app)
 # https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/logging/logging.html
-LoggingInstrumentor().instrument(set_logging_format=True)
+LoggingInstrumentor().instrument(set_logging_format=True, log_level=logging.INFO)
 
 
 @app.route('/hello')
@@ -63,8 +65,8 @@ def path(path="/"):
     os_env = dict(os.environ)
 
     for var, value in flask_env.items():
-        app.logger.warning(f'{var} = {value}')
-    app.logger.warning('-'*16)
+        app.logger.info(f'{var} = {value}')
+    app.logger.info('-'*16)
 
     return render_template('info.html', path=path, os_env=os_env, flask_env=flask_env)
 
