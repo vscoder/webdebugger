@@ -9,6 +9,8 @@ python = "^3.11"
 sentry-sdk = {extras = ["flask"], version = "^0.19.4"}
 flask = "^2.3.2"
 gunicorn = "^20.1.0"
+opentelemetry-instrumentation-flask = "^0.39b0"
+opentelemetry-instrumentation-logging = "^0.39b0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
