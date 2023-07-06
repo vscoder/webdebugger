@@ -18,6 +18,9 @@ from opentelemetry.sdk.trace.export import (
     ConsoleSpanExporter,
 )
 
+# https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/logging/logging.html
+LoggingInstrumentor().instrument(set_logging_format=True, log_level=logging.INFO)
+
 app = Flask(__name__)
 
 handler = logging.StreamHandler(sys.stdout)
@@ -25,8 +28,6 @@ app.logger.addHandler(handler)
 
 # https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/flask/flask.html
 FlaskInstrumentor().instrument_app(app)
-# https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/logging/logging.html
-LoggingInstrumentor().instrument(set_logging_format=True, log_level=logging.INFO)
 
 @app.route('/hello')
 def hello():
