@@ -6,20 +6,20 @@ from time import sleep
 
 import logging
 
-import sentry_sdk
-from flask import Flask, render_template, request
-from sentry_sdk.integrations.flask import FlaskIntegration
-
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.logging import LoggingInstrumentor
 
-from opentelemetry.sdk.trace.export import (
-    BatchSpanProcessor,
-    ConsoleSpanExporter,
-)
+# from opentelemetry.sdk.trace.export import (
+#     BatchSpanProcessor,
+#     ConsoleSpanExporter,
+# )
 
 # https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/logging/logging.html
 LoggingInstrumentor().instrument(set_logging_format=True, log_level=logging.INFO)
+
+import sentry_sdk
+from flask import Flask, render_template, request
+from sentry_sdk.integrations.flask import FlaskIntegration
 
 app = Flask(__name__)
 
