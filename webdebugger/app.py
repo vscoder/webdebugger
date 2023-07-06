@@ -6,13 +6,18 @@ from time import sleep
 
 import logging
 
+from opentelemetry import trace
+from opentelemetry.sdk.resources import Resource
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.logging import LoggingInstrumentor
 
-# from opentelemetry.sdk.trace.export import (
-#     BatchSpanProcessor,
-#     ConsoleSpanExporter,
-# )
+resource = Resource.create({"service.name": "webdebugger"})
+provider = TracerProvider(resource=resource)
+processor = BatchSpanProcessor(ConsoleSpanExporter())
+provider.add_span_processor(processor)
+trace.set_tracer_provider(provider)
 
 # https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/logging/logging.html
 LoggingInstrumentor().instrument(set_logging_format=True, log_level=logging.INFO)
