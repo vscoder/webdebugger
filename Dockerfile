@@ -30,7 +30,7 @@ RUN apk add --no-cache --virtual .build-deps \
 
 COPY . /app
 
-ENV APP_VERSION=1.1.7 \
+ENV APP_VERSION=1.1.8 \
     APP_DELAY=0 \
     APP_BGCOLOR=white \
     APP_NO_CSS=false \
