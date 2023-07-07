@@ -12,6 +12,7 @@ gunicorn = "^20.1.0"
 opentelemetry-instrumentation-flask = "^0.39b0"
 opentelemetry-instrumentation-logging = "^0.39b0"
 opentelemetry-sdk = "^1.18.0"
+opentelemetry-exporter-otlp = "^1.18.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
