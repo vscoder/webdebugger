@@ -5,6 +5,22 @@ from pprint import pformat
 from time import sleep
 
 import logging
+from logging.config import dictConfig
+dictConfig({
+    'version': 1,
+    'formatters': {'default': {
+        'format': '%(asctime)s %(levelname)s [%(name)s] [%(filename)s:%(lineno)d] [trace_id=%(otelTraceID)s span_id=%(otelSpanID)s resource.service.name=%(otelServiceName)s trace_sampled=%(otelTraceSampled)s] - %(message)s',
+    }},
+    'handlers': {'wsgi': {
+        'class': 'logging.StreamHandler',
+        'stream': sys.stdout,
+        'formatter': 'default'
+    }},
+    'root': {
+        'level': 'INFO',
+        'handlers': ['wsgi']
+    }
+})
 
 from opentelemetry import trace
 from opentelemetry.sdk.resources import Resource
@@ -28,10 +44,8 @@ import sentry_sdk
 from flask import Flask, render_template, request
 from sentry_sdk.integrations.flask import FlaskIntegration
 
-app = Flask(__name__)
 
-handler = logging.StreamHandler(sys.stdout)
-app.logger.addHandler(handler)
+app = Flask(__name__)
 
 # https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/flask/flask.html
 FlaskInstrumentor().instrument_app(app)
