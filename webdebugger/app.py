@@ -38,7 +38,7 @@ provider.add_span_processor(processor)
 trace.set_tracer_provider(provider)
 
 # https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/logging/logging.html
-LoggingInstrumentor().instrument(set_logging_format=True, log_level=logging.INFO)
+LoggingInstrumentor().instrument()
 
 import sentry_sdk
 from flask import Flask, render_template, request
