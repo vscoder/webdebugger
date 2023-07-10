@@ -4,8 +4,37 @@ import sys
 from pprint import pformat
 from time import sleep
 
-import logging
+import sentry_sdk
+from flask import Flask, render_template, request
+from sentry_sdk.integrations.flask import FlaskIntegration
+
+# import logging
 from logging.config import dictConfig
+
+from opentelemetry import trace
+from opentelemetry.sdk.resources import Resource
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
+from opentelemetry.instrumentation.flask import FlaskInstrumentor
+from opentelemetry.instrumentation.logging import LoggingInstrumentor
+from opentelemetry.instrumentation.jinja2 import Jinja2Instrumentor
+
+
+###
+# OpenTelemetry initialization
+###
+resource = Resource.create({"service.name": "webdebugger"})
+provider = TracerProvider(resource=resource)
+processor = BatchSpanProcessor(OTLPSpanExporter())  # configure endpoint with env OTEL_EXPORTER_OTLP_ENDPOINT
+provider.add_span_processor(processor)
+trace.set_tracer_provider(provider)
+
+
+###
+# Logging instrumentatipn
+###
+# Configure log format and send all logs to sys.stdout
 dictConfig({
     'version': 1,
     'formatters': {'default': {
@@ -22,37 +51,18 @@ dictConfig({
     }
 })
 
-from opentelemetry import trace
-from opentelemetry.sdk.resources import Resource
-from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExporter
-from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
-from opentelemetry.instrumentation.flask import FlaskInstrumentor
-from opentelemetry.instrumentation.logging import LoggingInstrumentor
-from opentelemetry.instrumentation.jinja2 import Jinja2Instrumentor
-
-
-resource = Resource.create({"service.name": "webdebugger"})
-provider = TracerProvider(resource=resource)
-# processor = BatchSpanProcessor(ConsoleSpanExporter())
-processor = BatchSpanProcessor(OTLPSpanExporter())
-provider.add_span_processor(processor)
-trace.set_tracer_provider(provider)
-
+# Instrument logging
 # https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/logging/logging.html
 LoggingInstrumentor().instrument()
 
-import sentry_sdk
-from flask import Flask, render_template, request
-from sentry_sdk.integrations.flask import FlaskIntegration
-
-
 app = Flask(__name__)
 
+# Instrument flask and jinja2
 # https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/flask/flask.html
 FlaskInstrumentor().instrument_app(app)
 # https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/jinja2/jinja2.html
 Jinja2Instrumentor().instrument()
+
 
 @app.route('/hello')
 def hello():
