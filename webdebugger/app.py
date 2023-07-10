@@ -29,6 +29,8 @@ from opentelemetry.sdk.trace.export import BatchSpanProcessor, ConsoleSpanExport
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.logging import LoggingInstrumentor
+from opentelemetry.instrumentation.jinja2 import Jinja2Instrumentor
+
 
 resource = Resource.create({"service.name": "webdebugger"})
 provider = TracerProvider(resource=resource)
@@ -49,6 +51,8 @@ app = Flask(__name__)
 
 # https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/flask/flask.html
 FlaskInstrumentor().instrument_app(app)
+# https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/jinja2/jinja2.html
+Jinja2Instrumentor().instrument()
 
 @app.route('/hello')
 def hello():
