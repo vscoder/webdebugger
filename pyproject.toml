@@ -14,6 +14,7 @@ opentelemetry-instrumentation-logging = "^0.39b0"
 opentelemetry-sdk = "^1.18.0"
 opentelemetry-exporter-otlp = "^1.18.0"
 opentelemetry-instrumentation-jinja2 = "^0.39b0"
+prometheus-flask-exporter = "^0.22.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

@@ -8,6 +8,9 @@ import sentry_sdk
 from flask import Flask, render_template, request
 from sentry_sdk.integrations.flask import FlaskIntegration
 
+# import metrics
+from prometheus_flask_exporter import PrometheusMetrics
+
 # import logging
 from logging.config import dictConfig
 
@@ -20,6 +23,8 @@ from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.logging import LoggingInstrumentor
 from opentelemetry.instrumentation.jinja2 import Jinja2Instrumentor
 
+
+import webdebugger
 
 ###
 # OpenTelemetry initialization
@@ -55,7 +60,11 @@ dictConfig({
 # https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/logging/logging.html
 LoggingInstrumentor().instrument()
 
+# Flask init
 app = Flask(__name__)
+# Metrics init
+# metrics = PrometheusMetrics(app)
+metrics = PrometheusMetrics(app, defaults_prefix='webdebugger', default_labels={'trace_id': lambda x: trace.get_current_span().context.trace_id})
 
 # Instrument flask and jinja2
 # https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/flask/flask.html
@@ -63,6 +72,7 @@ FlaskInstrumentor().instrument_app(app)
 # https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/jinja2/jinja2.html
 Jinja2Instrumentor().instrument()
 
+metrics.info('webdebugger_app_info', 'Application info', version=webdebugger.version())
 
 @app.route('/hello')
 def hello():

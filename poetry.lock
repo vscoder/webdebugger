@@ -1096,6 +1096,35 @@ files = [
 dev = ["pre-commit", "tox"]
 
 [[package]]
+name = "prometheus-client"
+version = "0.17.0"
+description = "Python client for the Prometheus monitoring system."
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "prometheus_client-0.17.0-py3-none-any.whl", hash = "sha256:a77b708cf083f4d1a3fb3ce5c95b4afa32b9c521ae363354a4a910204ea095ce"},
+    {file = "prometheus_client-0.17.0.tar.gz", hash = "sha256:9c3b26f1535945e85b8934fb374678d263137b78ef85f305b1156c7c881cd11b"},
+]
+
+[package.extras]
+twisted = ["twisted"]
+
+[[package]]
+name = "prometheus-flask-exporter"
+version = "0.22.4"
+description = "Prometheus metrics exporter for Flask"
+optional = false
+python-versions = "*"
+files = [
+    {file = "prometheus_flask_exporter-0.22.4-py3-none-any.whl", hash = "sha256:e130179c26d5a9b903c12c0d8826127ae491b04b298cae0b92b98677dcf2c06f"},
+    {file = "prometheus_flask_exporter-0.22.4.tar.gz", hash = "sha256:959b69f1e740b6736ea53fe5f28dc2ab6229b2ebeade6582b3dbb5d74c7d58e4"},
+]
+
+[package.dependencies]
+flask = "*"
+prometheus-client = "*"
+
+[[package]]
 name = "prompt-toolkit"
 version = "3.0.38"
 description = "Library for building powerful interactive command lines in Python"
@@ -1536,4 +1565,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "5e5128a48d67457bedcf60aa26b250d408266fa7271ea3eca0808abf87b800d6"
+content-hash = "5057e1b1b5c62976752d546e082ba71d89ec61d3f4d572d4c3b539478ad2698f"
