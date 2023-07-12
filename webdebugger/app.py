@@ -19,8 +19,11 @@ from opentelemetry.sdk.resources import Resource
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
+# https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/flask/flask.html
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
+# https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/logging/logging.html
 from opentelemetry.instrumentation.logging import LoggingInstrumentor
+# https://opentelemetry-python-contrib.readthedocs.io/en/latest/instrumentation/jinja2/jinja2.html
 from opentelemetry.instrumentation.jinja2 import Jinja2Instrumentor
 
 
@@ -31,7 +34,11 @@ import webdebugger
 ###
 resource = Resource.create({"service.name": "webdebugger"})
 provider = TracerProvider(resource=resource)
-processor = BatchSpanProcessor(OTLPSpanExporter())  # configure endpoint with env OTEL_EXPORTER_OTLP_ENDPOINT
+# More about OTLPSpanExporter:
+#   https://opentelemetry-python.readthedocs.io/en/latest/exporter/otlp/otlp.html
+#   https://opentelemetry.io/docs/concepts/sdk-configuration/otlp-exporter-configuration/
+# Endpoint may be configured with env OTEL_EXPORTER_OTLP_ENDPOINT
+processor = BatchSpanProcessor(OTLPSpanExporter())
 provider.add_span_processor(processor)
 trace.set_tracer_provider(provider)
 
